@@ -8,3 +8,5 @@ apavelchak@gmail.com
 # orders DB
 from my_project.auth.domain.orders.client import Client
 from my_project.auth.domain.orders.client_type import ClientType
+from my_project.auth.domain.orders.bus import Bus
+from my_project.auth.domain.orders.driver import Driver
