@@ -16,6 +16,8 @@ def register_routes(app: Flask) -> None:
     """
     app.register_blueprint(err_handler_bp)
 
+    from .orders.stop_route import stop_bp
+    from .orders.ticket_route import ticket_bp
     from .orders.client_route import client_bp
     from .orders.client_type_route import client_type_bp
     from .orders.bus_route import bus_bp
@@ -25,3 +27,5 @@ def register_routes(app: Flask) -> None:
     app.register_blueprint(bus_bp)
     app.register_blueprint(client_type_bp)
     app.register_blueprint(driver_bp)
+    app.register_blueprint(stop_bp)
+    app.register_blueprint(ticket_bp)

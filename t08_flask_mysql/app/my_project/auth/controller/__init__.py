@@ -8,8 +8,12 @@ from .orders.driver_controller import DriverController
 from .orders.bus_controller import BusController
 from .orders.client_controller import ClientController
 from .orders.client_type_controller import ClientTypeController
+from .orders.stop_controller import StopController
+from .orders.ticket_controller import TicketController
 
 driver_controller = DriverController()
 bus_controller = BusController()
 client_controller = ClientController()
 client_type_controller = ClientTypeController()
+ticket_controller = TicketController()
+stop_controller = StopController()
