@@ -1,8 +1,4 @@
-"""
-2022
-apavelchak@gmail.com
-© Andrii Pavelchak
-"""
+
 
 from my_project.auth.service import stop_service
 from my_project.auth.controller.general_controller import GeneralController

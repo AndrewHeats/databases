@@ -1,8 +1,4 @@
-"""
-2022
-apavelchak@gmail.com
-© Andrii Pavelchak
-"""
+
 
 from typing import List
 

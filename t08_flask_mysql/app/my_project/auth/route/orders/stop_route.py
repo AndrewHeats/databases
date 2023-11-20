@@ -1,8 +1,3 @@
-"""
-2022
-apavelchak@gmail.com
-© Andrii Pavelchak
-"""
 
 from http import HTTPStatus
 

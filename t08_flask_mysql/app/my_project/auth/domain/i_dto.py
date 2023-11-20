@@ -1,8 +1,3 @@
-"""
-2022
-apavelchak@gmail.com
-© Andrii Pavelchak
-"""
 
 from abc import abstractmethod
 from typing import Dict

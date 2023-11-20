@@ -1,8 +1,3 @@
-"""
-2022
-apavelchak@gmail.com
-© Andrii Pavelchak
-"""
 
 from __future__ import annotations
 
@@ -11,7 +6,11 @@ from typing import Dict, Any
 
 from my_project import db
 from my_project.auth.domain.i_dto import IDto
-
+route_passenger = db.Table(
+    'route_passenger',
+    db.Column('route_id', db.Integer, db.ForeignKey('route.id')),
+    db.Column('passenger_id', db.Integer, db.ForeignKey('passenger.id'))
+)
 
 class Passenger(db.Model, IDto):
     """
@@ -24,6 +23,7 @@ class Passenger(db.Model, IDto):
     surname: str = db.Column(db.String(40))
     date_of_birth: date = db.Column(db.Date)
     phone_number: str = db.Column(db.String(13))
+    routes = db.relationship('Route', secondary=route_passenger, backref=db.backref('routes', lazy='dynamic'))
 
     def __repr__(self) -> str:
         return f"Passenger({self.id}, {self.name}, {self.surname}, {self.date_of_birth}, {self.phone_number})"
@@ -38,7 +38,8 @@ class Passenger(db.Model, IDto):
             "name": self.name,
             "surname": self.surname,
             "date_of_birth": self.date_of_birth,
-            "phone_number": self.phone_number
+            "phone_number": self.phone_number,
+            "routes": [route.put_into_dto() for route in self.routes],
         }
 
     @staticmethod

@@ -1,8 +1,4 @@
-"""
-2022
-apavelchak@gmail.com
-© Andrii Pavelchak
-"""
+
 
 from __future__ import annotations
 
@@ -12,6 +8,8 @@ from my_project import db
 from my_project.auth.domain.i_dto import IDto
 
 
+
+
 class Ticket(db.Model, IDto):
     """
     Model declaration for Data Mapper.
@@ -19,7 +17,8 @@ class Ticket(db.Model, IDto):
     __tablename__ = "ticket"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    price: float = db.Column(db.Float(5,2))
+    price: float = db.Column(db.Float(5, 2))
+
 
 
     def __repr__(self) -> str:
@@ -32,7 +31,8 @@ class Ticket(db.Model, IDto):
         """
         return {
             "id": self.id,
-            "price": self.price
+            "price": self.price,
+
         }
 
     @staticmethod
@@ -44,6 +44,5 @@ class Ticket(db.Model, IDto):
         """
         obj = Ticket(
             price=dto_dict.get("price"),
-
         )
         return obj
