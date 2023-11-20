@@ -15,7 +15,7 @@ driver_bp = Blueprint('drivers', __name__, url_prefix='/drivers')
 
 
 @driver_bp.get('')
-def get_all_clients() -> Response:
+def get_all_drivers() -> Response:
     """
     Gets all objects from table using Service layer.
     :return: Response object
@@ -24,7 +24,7 @@ def get_all_clients() -> Response:
 
 
 @driver_bp.post('')
-def create_client() -> Response:
+def create_driver() -> Response:
     """
     Gets all objects from table using Service layer.
     :return: Response object
@@ -36,7 +36,7 @@ def create_client() -> Response:
 
 
 @driver_bp.get('/<int:driver_id>')
-def get_client(driver_id: int) -> Response:
+def get_driver(driver_id: int) -> Response:
     """
     Gets client by ID.
     :return: Response object
@@ -45,7 +45,7 @@ def get_client(driver_id: int) -> Response:
 
 
 @driver_bp.put('/<int:driver_id>')
-def update_client(driver_id: int) -> Response:
+def update_driver(driver_id: int) -> Response:
     """
     Updates client by ID.
     :return: Response object
@@ -56,22 +56,22 @@ def update_client(driver_id: int) -> Response:
     return make_response("Driver updated", HTTPStatus.OK)
 
 
-@driver_bp.patch('/<int:bus_id>')
-def patch_client(bus_id: int) -> Response:
+@driver_bp.patch('/<int:driver_id>')
+def patch_driver(driver_id: int) -> Response:
     """
     Patches client by ID.
     :return: Response object
     """
     content = request.get_json()
-    driver_controller.patch(bus_id, content)
-    return make_response("Bus updated", HTTPStatus.OK)
+    driver_controller.patch(driver_id, content)
+    return make_response("Driver updated", HTTPStatus.OK)
 
 
-@driver_bp.delete('/<int:bus_id>')
-def delete_client(bus_id: int) -> Response:
+@driver_bp.delete('/<int:driver_id>')
+def delete_driver(driver_id: int) -> Response:
     """
     Deletes client by ID.
     :return: Response object
     """
-    driver_controller.delete(bus_id)
-    return make_response("Bus deleted", HTTPStatus.OK)
+    driver_controller.delete(driver_id)
+    return make_response("Driver deleted", HTTPStatus.OK)
