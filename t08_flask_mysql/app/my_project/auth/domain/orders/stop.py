@@ -22,6 +22,8 @@ class Stop(db.Model, IDto):
     address: str = db.Column(db.String(40))
 
 
+
+
     def __repr__(self) -> str:
         return f"Bus({self.id}, {self.address})"
 
@@ -32,7 +34,7 @@ class Stop(db.Model, IDto):
         """
         return {
             "id": self.id,
-            "address": self.address
+            "address": self.address,
         }
 
     @staticmethod

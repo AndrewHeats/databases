@@ -38,8 +38,6 @@ class Subroute(db.Model, IDto):
             "id": self.id,
             "distance_of_subroute": self.distance_of_subroute,
             "price_of_subroute": self.price_of_subroute,
-            "start": self.start.put_into_dto() if self.start is not None else None,
-            "end": self.end.put_into_dto() if self.end is not None else None,
             "start_of_subroute": self.start.address if self.start is not None else "",
             "end_of_subroute": self.end.address if self.end is not None else "",
             "route_id": self.route_id,

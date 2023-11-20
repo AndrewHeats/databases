@@ -1,16 +1,15 @@
-"""
-2022
-apavelchak@gmail.com
-© Andrii Pavelchak
-"""
-
+# driver.py
 from __future__ import annotations
-
 from typing import Dict, Any
 
 from my_project import db
 from my_project.auth.domain.i_dto import IDto
 
+driver_bus = db.Table(
+    'driver_bus',
+    db.Column('driver_id', db.Integer, db.ForeignKey('driver.id')),
+    db.Column('bus_id', db.Integer, db.ForeignKey('bus.id'))
+)
 
 class Driver(db.Model, IDto):
     """
@@ -23,7 +22,8 @@ class Driver(db.Model, IDto):
     surname: str = db.Column(db.String(20))
     company: str = db.Column(db.String(40))
 
-
+    # Many-to-Many relationship with Bus
+    buses = db.relationship('Bus', secondary=driver_bus, backref=db.backref('drivers', lazy='dynamic'))
 
     def __repr__(self) -> str:
         return f"Driver({self.id}, {self.name}, {self.surname}, {self.company})"
@@ -37,7 +37,8 @@ class Driver(db.Model, IDto):
             "id": self.id,
             "name": self.name,
             "surname": self.surname,
-            "company": self.company
+            "company": self.company,
+            "buses": [bus.put_into_dto() for bus in self.buses]
         }
 
     @staticmethod
