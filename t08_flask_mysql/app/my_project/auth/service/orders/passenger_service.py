@@ -9,3 +9,5 @@ class PassengerService(GeneralService):
     Realisation of Passenger service.
     """
     _dao = passenger_dao
+    def find_routes(self, passenger_id: int):
+        return self._dao.find_routes(passenger_id)

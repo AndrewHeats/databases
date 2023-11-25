@@ -48,7 +48,7 @@ def create_app(app_config: Dict[str, Any], additional_config: Dict[str, Any]) ->
 
 def _init_swagger(app: Flask) -> None:
     # A-lia Swagger
-    restx_api = Api(app, title='Pavelchak test backend',
+    restx_api = Api(app, title='Simple test backend',
                     description='A simple backend')  # https://flask-restx.readthedocs.io/
 
     @restx_api.route('/number/<string:todo_id>')

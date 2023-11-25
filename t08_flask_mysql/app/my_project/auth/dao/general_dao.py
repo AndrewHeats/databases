@@ -40,6 +40,12 @@ class GeneralDAO(ABC):
         self._session.commit()
         return obj
 
+    def get_session(self):
+        """
+        Returns the SQLAlchemy session.
+        """
+        return self._session
+
     def create_all(self, obj_list: List[object]) -> List[object]:
         """
         Creates objects from object list.

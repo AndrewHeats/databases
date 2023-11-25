@@ -19,6 +19,14 @@ def get_all_drivers() -> Response:
     return make_response(jsonify(driver_controller.find_all()), HTTPStatus.OK)
 
 
+@driver_bp.get('/<int:driver_id>/buses')
+def get_all_buses_from_drivers(driver_id) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(driver_controller.find_buses(driver_id)), HTTPStatus.OK)
+
 @driver_bp.post('')
 def create_driver() -> Response:
     """

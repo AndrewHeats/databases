@@ -1,12 +1,17 @@
 from __future__ import annotations
+
 from typing import Dict, Any
+
 from my_project import db
 from my_project.auth.domain.i_dto import IDto
+
 route_bus = db.Table(
     'route_bus',
     db.Column('route_id', db.Integer, db.ForeignKey('route.id')),
-    db.Column('bus_id', db.Integer, db.ForeignKey('bus.id'))
+    db.Column('bus_id', db.Integer, db.ForeignKey('bus.id')),
+    extend_existing=True
 )
+
 
 class Route(db.Model, IDto):
     """
@@ -27,7 +32,8 @@ class Route(db.Model, IDto):
     start = db.relationship('Stop', foreign_keys=[start_of_the_route], lazy=True, uselist=False, backref='start_route')
     end = db.relationship('Stop', foreign_keys=[end_of_the_route], lazy=True, uselist=False, backref='end_route')
 
-    buses = db.relationship('Bus', secondary=route_bus, backref=db.backref('routes', lazy='dynamic'))
+    buses = db.relationship('Bus', secondary=route_bus, backref=db.backref('routes_association', lazy='dynamic'))
+
     @property
     def distance_of_route(self):
         return (self.number_of_stops - 1) * self.distance_between_2_stops
@@ -48,7 +54,6 @@ class Route(db.Model, IDto):
             "distance_of_route": self.distance_of_route,
             "start_of_the_route": self.start.address if self.start is not None else "",
             "end_of_the_route": self.end.address if self.end is not None else "",
-            "buses": [bus.put_into_dto() for bus in self.buses],
         }
 
     @staticmethod

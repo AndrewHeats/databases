@@ -10,6 +10,22 @@ from my_project.auth.domain import Route
 route_bp = Blueprint('routes', __name__, url_prefix='/routes')
 
 
+@route_bp.get('/<int:route_id>/buses')
+def get_all_routes_from_buses(route_id) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(route_controller.find_buses(route_id)), HTTPStatus.OK)
+
+@route_bp.get('/<int:route_id>/passengers')
+def get_all_routes_from_passengers(route_id) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(route_controller.find_passengers(route_id)), HTTPStatus.OK)
+
 @route_bp.get('')
 def get_all_routes() -> Response:
     """

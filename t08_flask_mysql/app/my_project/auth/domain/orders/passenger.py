@@ -9,7 +9,8 @@ from my_project.auth.domain.i_dto import IDto
 route_passenger = db.Table(
     'route_passenger',
     db.Column('route_id', db.Integer, db.ForeignKey('route.id')),
-    db.Column('passenger_id', db.Integer, db.ForeignKey('passenger.id'))
+    db.Column('passenger_id', db.Integer, db.ForeignKey('passenger.id')),
+    extend_existing=True
 )
 
 class Passenger(db.Model, IDto):
@@ -39,7 +40,6 @@ class Passenger(db.Model, IDto):
             "surname": self.surname,
             "date_of_birth": self.date_of_birth,
             "phone_number": self.phone_number,
-            "routes": [route.put_into_dto() for route in self.routes],
         }
 
     @staticmethod

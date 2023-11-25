@@ -17,6 +17,21 @@ def get_all_clients() -> Response:
     """
     return make_response(jsonify(bus_controller.find_all()), HTTPStatus.OK)
 
+@bus_bp.get('/<int:bus_id>/drivers')
+def get_all_buses_from_drivers(bus_id) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(bus_controller.find_drivers(bus_id)), HTTPStatus.OK)
+
+@bus_bp.get('/<int:bus_id>/routes')
+def get_all_buses_from_routes(bus_id) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(bus_controller.find_routes(bus_id)), HTTPStatus.OK)
 
 @bus_bp.post('')
 def create_client() -> Response:

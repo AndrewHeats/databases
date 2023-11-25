@@ -1,5 +1,6 @@
 # driver.py
 from __future__ import annotations
+
 from typing import Dict, Any
 
 from my_project import db
@@ -8,8 +9,10 @@ from my_project.auth.domain.i_dto import IDto
 driver_bus = db.Table(
     'driver_bus',
     db.Column('driver_id', db.Integer, db.ForeignKey('driver.id')),
-    db.Column('bus_id', db.Integer, db.ForeignKey('bus.id'))
+    db.Column('bus_id', db.Integer, db.ForeignKey('bus.id')),
+    extend_existing=True
 )
+
 
 class Driver(db.Model, IDto):
     """
@@ -23,7 +26,7 @@ class Driver(db.Model, IDto):
     company: str = db.Column(db.String(40))
 
     # Many-to-Many relationship with Bus
-    buses = db.relationship('Bus', secondary=driver_bus, backref=db.backref('drivers', lazy='dynamic'))
+    buses = db.relationship('Bus', secondary=driver_bus, backref=db.backref('drivers_associated', lazy='dynamic'))
 
     def __repr__(self) -> str:
         return f"Driver({self.id}, {self.name}, {self.surname}, {self.company})"
@@ -38,8 +41,8 @@ class Driver(db.Model, IDto):
             "name": self.name,
             "surname": self.surname,
             "company": self.company,
-            "buses": [bus.put_into_dto() for bus in self.buses]
         }
+
 
     @staticmethod
     def create_from_dto(dto_dict: Dict[str, Any]) -> Driver:

@@ -40,7 +40,7 @@ class Subroute(db.Model, IDto):
             "price_of_subroute": self.price_of_subroute,
             "start_of_subroute": self.start.address if self.start is not None else "",
             "end_of_subroute": self.end.address if self.end is not None else "",
-            "route_id": self.route_id,
+            "route": self.route.put_into_dto(),
         }
 
     @staticmethod

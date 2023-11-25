@@ -1,8 +1,6 @@
-
 from http import HTTPStatus
 
 from flask import Blueprint, jsonify, Response, request, make_response
-
 from my_project.auth.controller import passenger_controller
 from my_project.auth.domain import Passenger
 
@@ -16,6 +14,15 @@ def get_all_passengers() -> Response:
     :return: Response object
     """
     return make_response(jsonify(passenger_controller.find_all()), HTTPStatus.OK)
+
+
+@passenger_bp.get('/<int:passenger_id>/routes')
+def get_all_passengers_from_routes(passenger_id) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    return make_response(jsonify(passenger_controller.find_routes(passenger_id)), HTTPStatus.OK)
 
 
 @passenger_bp.post('')
