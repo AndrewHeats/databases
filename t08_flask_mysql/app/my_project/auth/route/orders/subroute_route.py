@@ -1,9 +1,6 @@
-
-
 from http import HTTPStatus
 
 from flask import Blueprint, jsonify, Response, request, make_response
-
 from my_project.auth.controller import subroute_controller
 from my_project.auth.domain import Subroute
 
@@ -17,6 +14,18 @@ def get_all_subroutes() -> Response:
     :return: Response object
     """
     return make_response(jsonify(subroute_controller.find_all()), HTTPStatus.OK)
+
+
+@subroute_bp.get('/operation/<string:operation>')
+def get_operation_on_subroutes(operation) -> Response:
+    """
+    Gets all objects from table using Service layer.
+    :return: Response object
+    """
+    result = subroute_controller.make_operation(operation)
+    return make_response(jsonify({
+        f"{operation}": result
+    }), HTTPStatus.OK)
 
 
 @subroute_bp.post('')

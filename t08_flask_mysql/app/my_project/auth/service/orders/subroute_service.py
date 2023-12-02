@@ -8,3 +8,6 @@ class SubrouteService(GeneralService):
     Realisation of Subroute service.
     """
     _dao = subroute_dao
+
+    def make_operation(self, operation):
+        return self._dao.make_operation(operation)
