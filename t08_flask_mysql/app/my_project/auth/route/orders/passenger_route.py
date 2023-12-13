@@ -16,6 +16,7 @@ def get_all_passengers() -> Response:
     return make_response(jsonify(passenger_controller.find_all()), HTTPStatus.OK)
 
 
+
 @passenger_bp.get('/<int:passenger_id>/routes')
 def get_all_passengers_from_routes(passenger_id) -> Response:
     """

@@ -25,11 +25,6 @@ def get_all_routes_from_passengers(route_id) -> Response:
     return make_response(jsonify(route_controller.find_passengers(route_id)), HTTPStatus.OK)
 
 
-@route_bp.get('/table')
-def create_table_with_timestamp() -> Response:
-    result = route_controller.create_dynamic_table_with_timestamp()
-    response = {"result": f"{result}, Table created successfully"}
-    return make_response(jsonify(response), HTTPStatus.CREATED)
 
 
 @route_bp.get('')

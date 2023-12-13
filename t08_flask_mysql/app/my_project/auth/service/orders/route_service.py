@@ -28,5 +28,4 @@ class RouteService(GeneralService):
         # Call the find_buses method from the DAO
         return self._dao.find_passengers(route_id)
 
-    def create_dynamic_table_with_timestamp(self):
-        return self._dao.create_dynamic_table_with_timestamp()
+

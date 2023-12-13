@@ -27,7 +27,5 @@ class RouteController(GeneralController):
         # Call the find_buses method from the DAO
         return self._service.find_passengers(route_id)
 
-    def create_dynamic_table_with_timestamp(self):
-        return self._service.create_dynamic_table_with_timestamp()
 
 

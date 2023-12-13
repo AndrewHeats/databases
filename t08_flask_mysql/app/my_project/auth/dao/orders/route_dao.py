@@ -68,9 +68,5 @@ class RouteDAO(GeneralDAO):
         return [passenger.put_into_dto() for passenger in passengers]
 
 
-    def create_dynamic_table_with_timestamp(self):
-        result = self._session.execute(sqlalchemy.text("CALL flixbus.create_dynamic_table_with_timestamp();"))
-        self._session.commit()
-        return result.mappings()
 
 
