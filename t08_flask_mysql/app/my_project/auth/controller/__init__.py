@@ -5,11 +5,13 @@ from .orders.passenger_controller import PassengerController
 from .orders.route_controller import RouteController
 from .orders.stop_controller import StopController
 from .orders.subroute_controller import SubrouteController
+from .orders.bus_base_controller import BusBaseController
 from .orders.ticket_controller import TicketController
 
 driver_controller = DriverController()
 bus_controller = BusController()
 ticket_controller = TicketController()
+bus_base_controller = BusBaseController()
 stop_controller = StopController()
 passenger_controller = PassengerController()
 route_controller = RouteController()

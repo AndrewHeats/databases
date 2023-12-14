@@ -1,7 +1,4 @@
-
-
-from typing import List
-
+import sqlalchemy
 from my_project.auth.dao.general_dao import GeneralDAO
 from my_project.auth.domain import Passenger
 
@@ -38,4 +35,5 @@ class PassengerDAO(GeneralDAO):
         routes = session.query(Route).filter(Route.id.in_(route_ids)).all()
 
         return [route.put_into_dto() for route in routes]
+
 

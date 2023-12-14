@@ -1,9 +1,6 @@
-
-
 from http import HTTPStatus
 
 from flask import Blueprint, jsonify, Response, request, make_response
-
 from my_project.auth.controller import route_controller
 from my_project.auth.domain import Route
 
@@ -18,6 +15,7 @@ def get_all_routes_from_buses(route_id) -> Response:
     """
     return make_response(jsonify(route_controller.find_buses(route_id)), HTTPStatus.OK)
 
+
 @route_bp.get('/<int:route_id>/passengers')
 def get_all_routes_from_passengers(route_id) -> Response:
     """
@@ -25,6 +23,9 @@ def get_all_routes_from_passengers(route_id) -> Response:
     :return: Response object
     """
     return make_response(jsonify(route_controller.find_passengers(route_id)), HTTPStatus.OK)
+
+
+
 
 @route_bp.get('')
 def get_all_routes() -> Response:

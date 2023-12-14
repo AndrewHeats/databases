@@ -1,9 +1,6 @@
-
-
 from http import HTTPStatus
 
 from flask import Blueprint, jsonify, Response, request, make_response
-
 from my_project.auth.controller import driver_controller
 from my_project.auth.domain import Driver
 
@@ -26,6 +23,28 @@ def get_all_buses_from_drivers(driver_id) -> Response:
     :return: Response object
     """
     return make_response(jsonify(driver_controller.find_buses(driver_id)), HTTPStatus.OK)
+
+
+@driver_bp.post('/name/<string:name>/surname/<string:surname>/company/<string:company>')
+def insert_driver(name, surname, company) -> Response:
+    driver_controller.insert_driver(name, surname, company)
+    response_data = {'message': 'Driver inserted successfully'}
+    return make_response(response_data, HTTPStatus.CREATED)
+
+
+@driver_bp.post('/name/<string:name>/run/<int:run>')
+def insert_driver_bus_dependency_by_name_and_run(name, run):
+    driver_controller.insert_driver_bus_dependency_by_name_and_run(name, run)
+    response_data = {'message': 'Driver Bus dependency created successfully'}
+    return make_response(response_data, HTTPStatus.CREATED)
+
+
+@driver_bp.post('/data')
+def insert_data():
+    driver_controller.insert_data()
+    response_data = {'message': 'Drivers created succesfully'}
+    return make_response(response_data, HTTPStatus.CREATED)
+
 
 @driver_bp.post('')
 def create_driver() -> Response:
